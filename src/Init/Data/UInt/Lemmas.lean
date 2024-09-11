@@ -71,7 +71,10 @@ protected theorem ne_of_toBitVec_ne {a b : $typeName} (h : a.toBitVec ≠ b.toBi
   fun h' => absurd (toBitVec_eq_of_eq h') h
 
 open $typeName (ne_of_toBitVec_ne) in
-protected theorem ne_of_lt {a b : $typeName} (h : a < b) : a ≠ b := ne_of_toBitVec_ne sorry--(Fin.ne_of_lt h)
+protected theorem ne_of_lt {a b : $typeName} (h : a < b) : a ≠ b := by
+  apply ne_of_toBitVec_ne
+  apply BitVec.ne_of_lt
+  simpa [lt_def] using h
 
 @[simp] protected theorem toNat_zero : (0 : $typeName).toNat = 0 := Nat.zero_mod _
 
@@ -81,7 +84,9 @@ protected theorem ne_of_lt {a b : $typeName} (h : a < b) : a ≠ b := ne_of_toBi
 
 @[simp] protected theorem toNat_sub_of_le (a b : $typeName) : b ≤ a → (a - b).toNat = a.toNat - b.toNat := sorry--Fin.sub_val_of_le
 
-protected theorem mod_lt (a b : $typeName) (h : 0 < b) : a % b < b := sorry--modn_lt _ (by simp [lt_def] at h; exact h)
+protected theorem mod_lt (a : $typeName) {b : $typeName} : 0 < b → a % b < b := by
+  simp only [lt_def, mod_def]
+  apply BitVec.umod_lt
 
 protected theorem toNat.inj : ∀ {a b : $typeName}, a.toNat = b.toNat → a = b
   | ⟨_, _⟩, ⟨_, _⟩, rfl => rfl
