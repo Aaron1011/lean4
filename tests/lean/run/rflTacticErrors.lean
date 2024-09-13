@@ -85,13 +85,15 @@ example : True ↔ True   := by apply_rfl
 example : P true true   := by apply_rfl
 example : Q true true   := by apply_rfl
 /--
-error: rfl failed, no @[refl] lemma registered for relation
+error: tactic 'rfl' failed, no @[refl] lemma registered for relation
   Q'
+⊢ Q' true true
 -/
 #guard_msgs in example : Q' true true  := by apply_rfl -- Error
 /--
-error: rfl failed, no @[refl] lemma registered for relation
+error: tactic 'rfl' failed, no @[refl] lemma registered for relation
   R
+⊢ R true true
 -/
 #guard_msgs in example : R true true   := by apply_rfl -- Error
 
@@ -101,14 +103,16 @@ example : True ↔ True   := by with_reducible apply_rfl
 example : P true true   := by with_reducible apply_rfl
 example : Q true true   := by with_reducible apply_rfl
 /--
-error: rfl failed, no @[refl] lemma registered for relation
+error: tactic 'rfl' failed, no @[refl] lemma registered for relation
   Q'
+⊢ Q' true true
 -/
 #guard_msgs in
 example : Q' true true  := by with_reducible apply_rfl -- Error
 /--
-error: rfl failed, no @[refl] lemma registered for relation
+error: tactic 'rfl' failed, no @[refl] lemma registered for relation
   R
+⊢ R true true
 -/
 #guard_msgs in
 example : R true true   := by with_reducible apply_rfl -- Error
@@ -124,14 +128,16 @@ example : True' ↔ True   := by apply_rfl
 example : P true' true   := by apply_rfl
 example : Q true' true   := by apply_rfl
 /--
-error: rfl failed, no @[refl] lemma registered for relation
+error: tactic 'rfl' failed, no @[refl] lemma registered for relation
   Q'
+⊢ Q' true' true
 -/
 #guard_msgs in
 example : Q' true' true  := by apply_rfl -- Error
 /--
-error: rfl failed, no @[refl] lemma registered for relation
+error: tactic 'rfl' failed, no @[refl] lemma registered for relation
   R
+⊢ R true' true
 -/
 #guard_msgs in
 example : R true' true   := by apply_rfl -- Error
@@ -142,14 +148,16 @@ example : True' ↔ True   := by with_reducible apply_rfl
 example : P true' true   := by with_reducible apply_rfl
 example : Q true' true   := by with_reducible apply_rfl -- NB: No error, Q and true' reducible
 /--
-error: rfl failed, no @[refl] lemma registered for relation
+error: tactic 'rfl' failed, no @[refl] lemma registered for relation
   Q'
+⊢ Q' true' true
 -/
 #guard_msgs in
 example : Q' true' true  := by with_reducible apply_rfl -- Error
 /--
-error: rfl failed, no @[refl] lemma registered for relation
+error: tactic 'rfl' failed, no @[refl] lemma registered for relation
   R
+⊢ R true' true
 -/
 #guard_msgs in
 example : R true' true   := by with_reducible apply_rfl -- Error
@@ -165,14 +173,16 @@ example : True'' ↔ True   := by apply_rfl
 example : P true'' true   := by apply_rfl
 example : Q true'' true   := by apply_rfl
 /--
-error: rfl failed, no @[refl] lemma registered for relation
+error: tactic 'rfl' failed, no @[refl] lemma registered for relation
   Q'
+⊢ Q' true'' true
 -/
 #guard_msgs in
 example : Q' true'' true  := by apply_rfl -- Error
 /--
-error: rfl failed, no @[refl] lemma registered for relation
+error: tactic 'rfl' failed, no @[refl] lemma registered for relation
   R
+⊢ R true'' true
 -/
 #guard_msgs in
 example : R true'' true   := by apply_rfl -- Error
