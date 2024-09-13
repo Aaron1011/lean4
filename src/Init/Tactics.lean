@@ -367,11 +367,7 @@ This tactic applies to a goal whose target has the form `x ~ x`,
 where `~` is equality, heterogeneous equality or any relation that
 has a reflexivity lemma tagged with the attribute @[refl].
 -/
-macro "rfl" : tactic => `(tactic| case' _ => fail "The rfl tactic failed. Possible reasons:
-- The goal is not a reflexive relation (neither `=` nor a relation with a @[refl] lemma).
-- The arguments of the relation are not equal.
-Try using the reflexivity lemma for your relation explicitly, e.g. `exact Eq.refl _` or
-`exact HEq.rfl` etc.")
+syntax "rfl" : tactic
 
 /--
 The same as `rfl`.
