@@ -370,11 +370,15 @@ has a reflexivity lemma tagged with the attribute @[refl].
 syntax "rfl" : tactic
 
 /--
-The same as `rfl`.
+The same as `rfl`, but without trying `eq_refl` at the end.
 -/
 syntax (name := applyRfl) "apply_rfl" : tactic
 
+-- We try `apply_rfl` first, beause it produces a nice error message
 macro_rules | `(tactic| rfl) => `(tactic| apply_rfl)
+
+-- But, mostly for backward compatibility, we try `eq_refl` too (reduces more aggressively)
+macro_rules | `(tactic| rfl) => `(tactic| eq_refl)
 
 /--
 `rfl'` is similar to `rfl`, but disables smart unfolding and unfolds all kinds of definitions,
