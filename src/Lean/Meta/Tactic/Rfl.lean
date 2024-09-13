@@ -58,7 +58,7 @@ def _root_.Lean.MVarId.applyRfl (goal : MVarId) : MetaM Unit := goal.withContext
   -- NB: uses whnfR, we do not want to unfold the relation itself
   let t ← whnfR <|← instantiateMVars <|← goal.getType
   if t.getAppNumArgs < 2 then
-    throwTacticEx `rfl goal "expected goal to be a binary relations"
+    throwTacticEx `rfl goal "expected goal to be a binary relation"
 
   -- Special case HEq here as it has a different argument order.
   if t.isAppOfArity ``HEq 4 then
