@@ -363,12 +363,9 @@ syntax (name := fail) "fail" (ppSpace str)? : tactic
 syntax (name := eqRefl) "eq_refl" : tactic
 
 /--
-`rfl` tries to close the current goal using reflexivity.
-This is supposed to be an extensible tactic and users can add their own support
-for new reflexive relations.
-
-Remark: `rfl` is an extensible tactic. We later add `macro_rules` to try different
-reflexivity theorems (e.g., `Iff.rfl`).
+This tactic applies to a goal whose target has the form `x ~ x`,
+where `~` is equality, heterogeneous equality or any relation that
+has a reflexivity lemma tagged with the attribute @[refl].
 -/
 macro "rfl" : tactic => `(tactic| case' _ => fail "The rfl tactic failed. Possible reasons:
 - The goal is not a reflexive relation (neither `=` nor a relation with a @[refl] lemma).
@@ -376,13 +373,8 @@ macro "rfl" : tactic => `(tactic| case' _ => fail "The rfl tactic failed. Possib
 Try using the reflexivity lemma for your relation explicitly, e.g. `exact Eq.refl _` or
 `exact HEq.rfl` etc.")
 
-macro_rules | `(tactic| rfl) => `(tactic| eq_refl)
-macro_rules | `(tactic| rfl) => `(tactic| exact HEq.rfl)
-
 /--
-This tactic applies to a goal whose target has the form `x ~ x`,
-where `~` is a reflexive relation other than `=`,
-that is, a relation which has a reflexive lemma tagged with the attribute @[refl].
+The same as `rfl`.
 -/
 syntax (name := applyRfl) "apply_rfl" : tactic
 
